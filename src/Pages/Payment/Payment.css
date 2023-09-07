@@ -20,8 +20,8 @@
     margin: 20px;
 }
 .paymentSuccessful>img{
-    max-height: 500px;
-    max-width: 400px;
+    max-height: 300px;
+    max-width: 300px;
     object-fit: contain;
 }
 .paymentSuccessfulBtn{
