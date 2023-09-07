@@ -141,8 +141,14 @@ export default function FilterProductsCard({
   const c = useSelector((state) => state?.CounterReducer);
   useEffect(() => {
     SetProductQuantity(c?.data);
-    setTotalCost(ProductPrice * c?.data);
+    if(counter == 1){
+      setTotalCost(ProductPrice*1);
 
+    }else{
+      setTotalCost(ProductPrice * c?.data);
+    }
+      
+    
   }, [c]);
 
   const handleDecrementCounter = () => {
@@ -165,7 +171,7 @@ export default function FilterProductsCard({
     dispatch({
       type: "ADD_TO_CART",
       data: {
-        ProductQuantity,
+        counter,
         ProductImage,
         ProductName,
         ProductPrice,
