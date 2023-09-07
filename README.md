@@ -1,6 +1,8 @@
 # This is FRONTEND challenge by totalitycorp
 Functionality :
 PRODUCT LIST,
+
+
 FILTERS:
 PRODUCT BY CATEGORY,
 PRICE RANGE,
