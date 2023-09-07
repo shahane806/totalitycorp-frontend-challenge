@@ -32,7 +32,7 @@ export default function ProductCard({
   const [TotalCost,setTotalCost] =  useState(0);
   useEffect(()=>{
 setTotalCost(ProductPrice*ProductQuantity);
-  },[TotalCost])
+  },[ProductQuantity])
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
