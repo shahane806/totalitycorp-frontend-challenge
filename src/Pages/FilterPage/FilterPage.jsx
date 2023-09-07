@@ -25,6 +25,7 @@ export default function FilterPage() {
             temp.push(temp2.splice(index, 1)[0]);
             setFilteredProducts(temp);
           }
+          
         }
         if (filter?.cAndl) {
           setTemp2(Products);
@@ -47,11 +48,20 @@ export default function FilterPage() {
             setFilteredProducts(temp);
           }
         }
+       if(item?.ProductPrice<=filter?.PriceRangeTo){
+          temp.push(temp2.splice(index, 1)[0]);
+          setFilteredProducts(temp);
+       }
+       if(item?.ProductRating===parseInt(filter?.rate)){
+          temp.push(temp2.splice(index, 1)[0]);
+          setFilteredProducts(temp);
+       }
+          
       } else {
         setFilteredProducts(Products);
       }
     });
-  }, [ filter,ProductCart]);
+  }, [filter, ProductCart]);
 
   return (
     <div id="FilterPage">

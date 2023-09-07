@@ -20,6 +20,9 @@ const handlePayment=()=>{
     <div id="Checkout">
       <div className="subtotal">
         <Typography gutterBottom variant="h5" component="div">
+          Checkout
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
           Total {subtotal} items
         </Typography>
       </div>

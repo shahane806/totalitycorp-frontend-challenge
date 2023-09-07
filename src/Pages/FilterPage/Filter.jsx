@@ -29,8 +29,9 @@ const Filter = ({ id }) => {
   const [TAndM, setTAndM] = useState(false);
   const dispatch = useDispatch();
   const [rate, setFilterRate] = useState(0);
-
-  const ApplyFilter = () => {
+  
+  const ApplyFilter = (e) => {
+    e.preventDefault();
     dispatch({
       type: "FILTER",
       data: {
@@ -46,7 +47,8 @@ const Filter = ({ id }) => {
    });
     
   };
-  const ResetFilter = () => {
+  const ResetFilter = (e) => {
+    e.preventDefault();
     SetCategory([]);
     setPriceRangeFrom(0);
     setPriceRangeTo(0);
@@ -226,8 +228,8 @@ const Filter = ({ id }) => {
       </Collapse>
       <List component="div" disablePadding>
         <ListItemButton sx={{ pl: 10 }}>
-          <Button onClick={ApplyFilter}>Apply</Button>
-          <Button onClick={ResetFilter}>Reset</Button>
+          <Button onClick={(e)=>ApplyFilter(e)}>Apply</Button>
+          <Button onClick={(e)=>ResetFilter(e)}>Reset</Button>
         </ListItemButton>
       </List>
     </List>
