@@ -169,9 +169,11 @@ export default function FilterProductsCard({
     localStorage.setItem("Counter", counter);
     
     SetProductQuantity(localStorage.getItem("Counter"));
-    setTotalCost(ProductPrice*ProductQuantity);
   },[ProductQuantity,counter]);
-
+  useEffect(()=>{
+    setTotalCost(ProductPrice*ProductQuantity);
+    
+  },[ProductQuantity])
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
