@@ -29,7 +29,10 @@ export default function ProductCard({
     
     SetProductQuantity(localStorage.getItem("Counter"));
   }, [ProductQuantity, counter]);
-
+  const [TotalCost,setTotalCost] =  useState(0);
+  useEffect(()=>{
+setTotalCost(ProductPrice*ProductQuantity);
+  },[TotalCost])
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
@@ -40,6 +43,7 @@ export default function ProductCard({
         ProductPrice,
         ProductCategory,
         ProductRating,
+        TotalCost,
       },
     });
   };
