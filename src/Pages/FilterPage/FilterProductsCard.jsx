@@ -3,43 +3,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useDispatch } from "react-redux";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, CardActionArea, CardActions, TextField } from "@mui/material";
 import { Unstable_NumberInput as NumberInput } from "@mui/base/Unstable_NumberInput";
 import { styled } from "@mui/system";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import Rating from "@mui/material/Rating";
 import "./FilterPage.css";
-import { useState,useEffect } from "react";
-
-
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
-  props,
-  ref
-) {
-  return (
-    <NumberInput
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInput,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton,
-      }}
-      slotProps={{
-        incrementButton: {
-          children: <AddIcon />,
-          className: "increment",
-        },
-        decrementButton: {
-          children: <RemoveIcon />,
-        },
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+import { useState, useEffect } from "react";
 
 const blue = {
   100: "#daecff",
@@ -160,20 +132,35 @@ export default function FilterProductsCard({
     objectfit: "contain",
     padding: "3px",
   };
-  const [ProductQuantity, SetProductQuantity] = useState(0);
-  const dispatch = useDispatch();
-  const [counter, setCounter] = useState(1);
-  const [TotalCost,setTotalCost] = useState(0);
 
+  const dispatch = useDispatch();
+  const [ProductQuantity, SetProductQuantity] = useState(1);
+  const [counter, setCounter] = useState(1);
+  const [TotalCost, setTotalCost] = useState(1);
+
+  const c = useSelector((state) => state?.CounterReducer);
   useEffect(() => {
-    localStorage.setItem("Counter", counter);
-    
-    SetProductQuantity(localStorage.getItem("Counter"));
-  },[ProductQuantity,counter]);
-  useEffect(()=>{
-    setTotalCost(ProductPrice*ProductQuantity);
-    
-  },[ProductQuantity])
+    SetProductQuantity(c?.data);
+    setTotalCost(ProductPrice * c?.data);
+
+  }, [c]);
+
+  const handleDecrementCounter = () => {
+    const updateCounter = counter - 1;
+    if (updateCounter < 1) {
+      setCounter(1);
+      dispatch({ type: "COUNTER", data: updateCounter });
+    } else {
+      setCounter(updateCounter);
+      dispatch({ type: "COUNTER", data: updateCounter });
+    }
+  };
+  const handleIncrementCounter = () => {
+    const updateCounter = counter + 1;
+    setCounter(updateCounter);
+    dispatch({ type: "COUNTER", data: updateCounter });
+  };
+
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
@@ -188,6 +175,7 @@ export default function FilterProductsCard({
       },
     });
   };
+
   return (
     <Card sx={{ margin: "30px" }} className="FilterProductsCard">
       <CardActionArea>
@@ -208,7 +196,7 @@ export default function FilterProductsCard({
             {ProductCategory}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Total Cost : {ProductPrice*ProductQuantity}
+            Total Cost : {ProductPrice * counter}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <Rating
@@ -221,13 +209,31 @@ export default function FilterProductsCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <CustomNumberInput
-          aria-label="Quantity Input"
-          min={1}
-          max={99}
-          value={counter}
-          onChange={(e) => setCounter(e.target.value)}
-        />
+        <div id="Inputs">
+          <div>
+            <Button
+              style={{ marginRight: "10px" }}
+              onClick={handleDecrementCounter}
+            >
+              -
+            </Button>
+          </div>
+          <div>
+            <TextField
+              onChange={(e) => setCounter(e.target.value)}
+              value={counter}
+              id="Inputs_TextField"
+            />
+          </div>
+          <div>
+            <Button
+              style={{ marginLeft: "10px" }}
+              onClick={handleIncrementCounter}
+            >
+              +
+            </Button>
+          </div>
+        </div>
       </CardActions>
       <CardActions>
         <Button size="small" color="primary" onClick={handleAddToCart}>
