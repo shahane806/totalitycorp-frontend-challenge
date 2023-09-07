@@ -1,0 +1,14 @@
+.logo{
+    max-width: 40px;
+    max-height: 40px;
+    margin-top: 10px;
+}
+#NavMenu{
+    display: none;
+}
+@media screen and (max-width:900px) {
+    #NavMenu{
+        display: flex;
+    }
+    
+}

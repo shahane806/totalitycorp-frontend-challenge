@@ -1,0 +1,29 @@
+@media screen and (max-width:900px) {
+    #Filter{
+        display: none;
+    }
+    .FilterProductsCard{
+        display: flex;
+        flex-direction: column;
+    }
+}
+#FilterPage{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+#FilteredProducts{
+    display: flex;
+    flex-direction: row;
+    min-width: 300px;
+    height: 100px;
+    flex-wrap: wrap;
+
+}
+.FilterProductsCard{
+    width: 100%;
+    display: flex;
+}
+.filteredProducts{
+    background-color: white;
+}

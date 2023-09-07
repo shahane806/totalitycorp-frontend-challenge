@@ -1,0 +1,51 @@
+#Payment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid rgb(205, 205, 205);
+    max-height: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.paymentSuccessful{
+    display: flex;
+    flex-direction: column;
+    
+    border: 1px solid rgb(204, 202, 202);
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 20px;
+}
+.paymentSuccessful>img{
+    max-height: 500px;
+    max-width: 400px;
+    object-fit: contain;
+}
+.paymentSuccessfulBtn{
+    border: 1px solid rgb(61, 197, 61);
+    background-color: rgb(61, 197, 61);
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    
+}
+.paymentSuccessfulBtns{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.DownloadIcon{
+   align-items: center;
+   text-align: center;
+   display: flex;
+
+   margin-left: 10px;
+   padding: 10px;
+}

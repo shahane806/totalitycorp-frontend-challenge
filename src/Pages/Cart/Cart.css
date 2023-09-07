@@ -1,0 +1,30 @@
+#Cart{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.AddToCartButton{
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(89, 92, 251);
+    border: 1px solid rgb(89, 92, 251);
+    border-radius: 3px;
+
+}
+.AddToCartButton:hover{
+    background-color: rgb(102, 105, 248);
+    border: 1px solid rgb(102, 105, 248);
+}
+.subtotal{
+    margin-top: 10px;
+}
+#Checkout{
+    padding: 20px;
+    margin-top: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.314);
+}
+.CheckoutLink{
+    text-decoration: none;
+    color: white;
+}

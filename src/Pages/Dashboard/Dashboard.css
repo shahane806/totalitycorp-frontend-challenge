@@ -1,0 +1,26 @@
+
+.ProductSectionOne{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    max-width: 100%;
+}
+.ProductSectionTwo{
+ 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+    flex-wrap: wrap;
+}
+
+.ProductSectionThree{
+    align-items: center;
+    display: flex;
+    margin-top: 100px;
+    flex-direction: column-reverse;
+
+}
