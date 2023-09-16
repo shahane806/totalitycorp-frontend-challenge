@@ -1,7 +1,7 @@
 import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import List from "@mui/material/List";
-
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Button from "@mui/material/Button";
 import "./Navbar.css";
 import Filter from "../../Pages/FilterPage/Filter";
@@ -26,11 +26,11 @@ export default function NavDrawer({ newStyle }) {
 
   return (
     <>
-      <div id="NavMenu">
+      <div id="NavMenu" >
         {["bottom"].map((anchor) => (
-          <React.Fragment key={anchor}>
+          <React.Fragment key={anchor} >
             <Button onClick={toggleDrawer(anchor, true)} style={newStyle}>
-              Filter
+              <FilterAltIcon/>
             </Button>
             <SwipeableDrawer
               anchor={anchor}

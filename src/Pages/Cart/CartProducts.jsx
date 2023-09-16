@@ -13,14 +13,13 @@ export default function CartProducts({
   ProductImage,
   ProductName,
   ProductPrice,
-  ProductQuantity,
   ProductCategory,
   ProductRating,
   TotalCost,
 }) {
   const productStyle = {
-    width: "200px",
-
+    width: "100px",
+    display:"flex",
     margin: "30px auto 40px auto",
     objectfit: "contain",
     padding: "3px",
@@ -38,7 +37,7 @@ export default function CartProducts({
     dispatch({ type: "REMOVE_FROM_CART", data: newCart });
   };
   return (
-    <Card sx={{ margin: "30px" }} className="FilterProductsCard">
+    <Card sx={{ margin: "30px" }} className="FilterProductsCard" >
       <CardActionArea>
         <CardMedia
           component="img"
@@ -54,7 +53,7 @@ export default function CartProducts({
             ₹{ProductPrice}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Quantity: {ProductQuantity}
+            Quantity: {TotalCost/ProductPrice}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             TotalCost: {TotalCost}

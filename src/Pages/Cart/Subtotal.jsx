@@ -17,7 +17,7 @@ const handlePayment=()=>{
     card==null||cvv==null||expiryDate==null||name==null||Address==null||Mobile==null? navigate("/Payment/Failed"):navigate("/Payment/Successful");
     }
   return (
-    <div id="Checkout">
+    <div id="Checkout" >
       <div className="subtotal">
         <Typography gutterBottom variant="h5" component="div">
           Checkout

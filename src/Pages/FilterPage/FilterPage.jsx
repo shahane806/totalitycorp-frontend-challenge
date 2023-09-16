@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Filter from "./Filter";
 import FilterProductsCard from "../../Pages/FilterPage/FilterProductsCard";
 import { useSelector } from "react-redux";
+import { Skeleton } from "@mui/material";
+
 export default function FilterPage() {
   const [Products, setProducts] = useState([]);
   const [FilteredProducts, setFilteredProducts] = useState(null);
@@ -25,7 +27,6 @@ export default function FilterPage() {
             temp.push(temp2.splice(index, 1)[0]);
             setFilteredProducts(temp);
           }
-          
         }
         if (filter?.cAndl) {
           setTemp2(Products);
@@ -48,75 +49,83 @@ export default function FilterPage() {
             setFilteredProducts(temp);
           }
         }
-       if(item?.ProductPrice<=filter?.PriceRangeTo){
+        if (item?.ProductPrice <= filter?.PriceRangeTo) {
           temp.push(temp2.splice(index, 1)[0]);
           setFilteredProducts(temp);
-       }
-       if(item?.ProductRating===parseInt(filter?.rate)){
+        }
+        if (item?.ProductRating === parseInt(filter?.rate)) {
           temp.push(temp2.splice(index, 1)[0]);
           setFilteredProducts(temp);
-       }
-          
+        }
       } else {
         setFilteredProducts(Products);
       }
     });
   }, [filter, ProductCart]);
-
+  const [loading, setLoading] = useState(false);
+  setTimeout(() => {
+    setLoading(true);
+    clearTimeout();
+  }, 3000);
   return (
-    <div id="FilterPage">
-      <Filter id={"Filter"} />
+    <>
+      {loading && (
+        <div id="FilterPage">
+          <Filter id={"Filter"} />
 
-      <div id="FilteredProducts" className="FilteredProducts">
-        {FilteredProducts &&
-          FilteredProducts?.map(
-            (
-              {
-                ProductImage,
-                ProductName,
-                ProductPrice,
-                ProductCategory,
-                ProductRating,
-              },
-              index
-            ) => {
-              return (
-                <FilterProductsCard
-                  key={index}
-                  ProductImage={ProductImage}
-                  ProductName={ProductName}
-                  ProductPrice={ProductPrice}
-                  ProductCategory={ProductCategory}
-                  ProductRating={ProductRating}
-                />
-              );
-            }
-          )}
-        {!FilteredProducts &&
-          Products?.map(
-            (
-              {
-                ProductImage,
-                ProductName,
-                ProductPrice,
-                ProductCategory,
-                ProductRating,
-              },
-              index
-            ) => {
-              return (
-                <FilterProductsCard
-                  key={index}
-                  ProductImage={ProductImage}
-                  ProductName={ProductName}
-                  ProductPrice={ProductPrice}
-                  ProductCategory={ProductCategory}
-                  ProductRating={ProductRating}
-                />
-              );
-            }
-          )}
-      </div>
-    </div>
+          <div id="FilteredProducts" className="FilteredProducts">
+            {FilteredProducts &&
+              FilteredProducts?.map(
+                (
+                  {
+                    ProductImage,
+                    ProductName,
+                    ProductPrice,
+                    ProductCategory,
+                    ProductRating,
+                  },
+                  index
+                ) => {
+                  return (
+                    <FilterProductsCard
+                      key={index}
+                      ProductImage={ProductImage}
+                      ProductName={ProductName}
+                      ProductPrice={ProductPrice}
+                      ProductCategory={ProductCategory}
+                      ProductRating={ProductRating}
+                    />
+                  );
+                }
+              )}
+            {!FilteredProducts &&
+              Products?.map(
+                (
+                  {
+                    ProductImage,
+                    ProductName,
+                    ProductPrice,
+                    ProductCategory,
+                    ProductRating,
+                  },
+                  index
+                ) => {
+                  return (
+                    <FilterProductsCard
+                      key={index}
+                      ProductImage={ProductImage}
+                      ProductName={ProductName}
+                      ProductPrice={ProductPrice}
+                      ProductCategory={ProductCategory}
+                      ProductRating={ProductRating}
+                    />
+                  );
+                }
+              )}
+          </div>
+        </div>
+      )}
+      {!loading && <Skeleton width={500} height={500} />}
+    </>
   );
 }

@@ -8,8 +8,8 @@ import { Typography } from "@mui/material";
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [cpl, setCPL] = useState(0);
-  const [subtotal,setSubtotal] = useState(0);
-  const [totalPrice,setTotalPrice] = useState(0);
+  const [subtotal, setSubtotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const cart = useSelector((state) => state?.AddToCartReducer);
   useEffect(() => {
@@ -25,18 +25,14 @@ const Cart = () => {
     setSubtotal(cart.length);
   }, [cart]);
   return (
-    <>
-      
-     {cpl!==0 &&  <Subtotal subtotal={subtotal} totalPrice={totalPrice}/>}
-     {cpl!==0 && <div className="subtotal">
-        <Typography gutterBottom variant="h5" component="div">
-          Review Cart
-        </Typography>
-      </div>
-     }
-     
-
-      <div id="Cart">
+    <div className="FilterProductsCard">
+      {cpl !== 0 && <Subtotal subtotal={subtotal} totalPrice={totalPrice} />}
+      {cpl !== 0 && (
+        <div id="Checkout" className="subtotal">
+          <Typography gutterBottom variant="h5" component="div">
+            &nbsp; &nbsp; Review Cart
+          </Typography>
+          <div id="Cart">
         <div className="ProductSectionOne">
           {cpl === 0 ? (
             <CustomizedSnackbars />
@@ -72,7 +68,11 @@ const Cart = () => {
           )}
         </div>
       </div>
-    </>
+        </div>
+      )}
+
+     
+    </div>
   );
 };
 
